@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ScaleShuffler</string>
+
+    <string name="button_text">Shuffle</string>
+    <string name="scale_default">Press Shuffle to start!</string>
+</resources>
