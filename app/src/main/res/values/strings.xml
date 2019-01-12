@@ -23,6 +23,26 @@
     <string name="EMG1_next_element_button_text">Next</string>
     <string name="EMG1_prev_element_button_text">Previous</string>
     <string name="EMG1_reset_exam_button_text">Reset</string>
+    <string name="EMG1_element_name_default">Exam Element</string>
+    <string name="EMG1_element_key_default">Element Key</string>
+    <string name="EMG1_element_hands_default">Element Hands</string>
+    <string name="EMG1_element_tempo_default">Element Tempo</string>
+
+    <string name="EMG1_c_major">C Major</string>
+    <string name="EMG1_g_major">G Major</string>
+    <string name="EMG1_d_major">D Major</string>
+    <string name="EMG1_f_major">F Major</string>
+
+    <string name="EMG1_a_minor">A Minor</string>
+    <string name="EMG1_d_minor">D Minor</string>
+
+    <string name="EMG1_left_hand">Left Hand</string>
+    <string name="EMG1_right_hand">Right Hand</string>
+    <string name="EMG1_both_hands">Both Hands</string>
+    <string name="EMG1_starting_on_C">Starting on C</string>
+
+    <string name="EMG1_scale_tempo">60 crotchet bpm</string>
+    <string name="EMG1_bc_tempo">46 dotted crotchet bpm</string>
 
     <!-- Elements of Exam -->
     <string name="EMG1_element_major_scale">Major Scale</string>
