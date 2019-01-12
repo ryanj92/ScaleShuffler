@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExamModeActivity">
+
+    <Button
+        android:id="@+id/bt_EM_grade7select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:enabled="false"
+        android:text="@string/EM_grade7_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EM_main_menu"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EM_grade8select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_EM_grade5select" />
+
+    <Button
+        android:id="@+id/bt_EM_main_menu"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/EM_main_menu_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bt_EM_grade8select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="50dp"
+        android:enabled="false"
+        android:text="@string/EM_grade8_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EM_grade7select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_EM_grade7select" />
+
+    <Button
+        android:id="@+id/bt_EM_grade5select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:enabled="false"
+        android:text="@string/EM_grade5_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EM_grade7select"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EM_grade6select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_EM_grade3select" />
+
+    <Button
+        android:id="@+id/bt_EM_grade6select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="50dp"
+        android:enabled="false"
+        android:text="@string/EM_grade6_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EM_grade5select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_EM_grade5select" />
+
+    <TextView
+        android:id="@+id/tv_exam_mode_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/EM_title_text"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EM_grade1select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/bt_EM_grade1select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/EM_grade1_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EM_grade3select"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EM_grade2select"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exam_mode_title" />
+
+    <Button
+        android:id="@+id/bt_EM_grade3select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:enabled="false"
+        android:text="@string/EM_grade3_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EM_grade5select"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EM_grade4select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_EM_grade1select" />
+
+    <Button
+        android:id="@+id/bt_EM_grade4select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="50dp"
+        android:editable="false"
+        android:enabled="false"
+        android:text="@string/EM_grade4_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EM_grade3select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_EM_grade3select" />
+
+    <Button
+        android:id="@+id/bt_EM_grade2select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="50dp"
+        android:enabled="false"
+        android:text="@string/EM_grade2_button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EM_grade1select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_EM_grade1select" />
+</android.support.constraint.ConstraintLayout>

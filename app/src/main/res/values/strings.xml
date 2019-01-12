@@ -1,6 +1,34 @@
 <resources>
     <string name="app_name">ScaleShuffler</string>
 
-    <string name="button_text">Shuffle</string>
-    <string name="scale_default">Press Shuffle to start!</string>
+    <!-- Strings for main menu -->
+    <string name="MM_title_text">ScaleShuffler</string>
+    <string name="MM_exam_mode_button_text">Exam Mode</string>
+
+    <!-- Strings for exam mode screen -->
+    <string name="EM_title_text">Exam Mode</string>
+    <string name="EM_grade1_button_text">Grade 1</string>
+    <string name="EM_grade2_button_text">Grade 2</string>
+    <string name="EM_grade3_button_text">Grade 3</string>
+    <string name="EM_grade4_button_text">Grade 4</string>
+    <string name="EM_grade5_button_text">Grade 5</string>
+    <string name="EM_grade6_button_text">Grade 6</string>
+    <string name="EM_grade7_button_text">Grade 7</string>
+    <string name="EM_grade8_button_text">Grade 8</string>
+    <string name="EM_main_menu_button_text">Main Menu</string>
+
+    <!-- Strings for Grade 1 Exam -->
+    <string name="EMG1_title_text">Grade 1 Exam</string>
+    <string name="EMG1_grade_select_button_text">Grade Select</string>
+    <string name="EMG1_next_element_button_text">Next</string>
+    <string name="EMG1_prev_element_button_text">Previous</string>
+    <string name="EMG1_reset_exam_button_text">Reset</string>
+
+    <!-- Elements of Exam -->
+    <string name="EMG1_element_major_scale">Major Scale</string>
+    <string name="EMG1_element_minor_scale">Minor Scale</string>
+    <string name="EMG1_element_cont_motion_scale">Contrary-Motion Scale</string>
+    <string name="EMG1_element_major_bc">Major Broken Chord</string>
+    <string name="EMG1_element_minor_bc">Minor Broken Chord</string>
+
 </resources>
