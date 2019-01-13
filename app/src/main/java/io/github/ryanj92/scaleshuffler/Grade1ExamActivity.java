@@ -1,15 +1,15 @@
 package io.github.ryanj92.scaleshuffler;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Random;
+
+import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Grade1ExamActivity extends AppCompatActivity {
 
@@ -26,8 +26,10 @@ public class Grade1ExamActivity extends AppCompatActivity {
     private TextView mCurrentElementKey;
     private TextView mCurrentElementHands;
     private TextView mCurrentElementTempo;
+    private TextView mCurrentElementNumber;
 
-    private ArrayList<String> currentElement = new ArrayList<>();
+    public ExamModeViewModel currentElementViewModel;
+
     private Random randIntGen = new Random();
 
     @Override
@@ -46,21 +48,42 @@ public class Grade1ExamActivity extends AppCompatActivity {
         mCurrentElementKey = findViewById(R.id.tv_EMG1_current_element_key);
         mCurrentElementHands = findViewById(R.id.tv_EMG1_current_element_hands);
         mCurrentElementTempo = findViewById(R.id.tv_EMG1_current_element_tempo);
+        mCurrentElementNumber = findViewById(R.id.tv_EMG1_current_element_number);
 
-        // Set elementNumber if not already assigned, ensure buttons are disabled if necessary
+        // Create or retrieve ViewModel
+        currentElementViewModel = ViewModelProviders.of(this).get(ExamModeViewModel.class);
+
+        // Initialize ViewModel if null, otherwise fetch and display current element
+        if (currentElementViewModel.getElementName() == null) {
+            updateElement(elementNumberDefault);
+        } else {
+            mCurrentElementName.setText(currentElementViewModel.getElementName());
+        }
+
+        if (!(currentElementViewModel.getElementKey() == null)) {
+            mCurrentElementKey.setText(currentElementViewModel.getElementKey());
+        }
+        if (!(currentElementViewModel.getElementHands() == null)) {
+            mCurrentElementHands.setText(currentElementViewModel.getElementHands());
+        }
+        if (!(currentElementViewModel.getElementTempo() == null)) {
+            mCurrentElementTempo.setText(currentElementViewModel.getElementTempo());
+        }
+
+        elementNumber = currentElementViewModel.getElementNumber();
+
         if (elementNumber == 0) {
             elementNumber = elementNumberDefault;
-            mPrevElement.setEnabled(false);
-        } else if (elementNumber == 1) {
+            currentElementViewModel.putElementNumber(elementNumber);
+        }
+
+        if (elementNumber == 1) {
             mPrevElement.setEnabled(false);
         } else if (elementNumber == totalElements) {
             mNextElement.setEnabled(false);
         }
 
-        // Update element if none is currently being displayed
-        if (currentElement.isEmpty()) {
-            updateElement(elementNumber);
-        }
+        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),elementNumber,totalElements));
 
         // Set onClickListeners for all navigation buttons -----------------------------------------
 
@@ -77,6 +100,7 @@ public class Grade1ExamActivity extends AppCompatActivity {
                 // Move to next element in list, update element
                 if (elementNumber < totalElements) {
                     elementNumber++;
+                    currentElementViewModel.putElementNumber(elementNumber);
                     updateElement(elementNumber);
                 }
 
@@ -96,6 +120,7 @@ public class Grade1ExamActivity extends AppCompatActivity {
                 // Move to previous element in list, update element
                 if (elementNumber > 1) {
                     elementNumber--;
+                    currentElementViewModel.putElementNumber(elementNumber);
                     updateElement(elementNumber);
                 }
 
@@ -113,6 +138,7 @@ public class Grade1ExamActivity extends AppCompatActivity {
             // Return to first element, update element and buttons
             public void onClick(View v) {
                 elementNumber = elementNumberDefault;
+                currentElementViewModel.putElementNumber(elementNumber);
                 updateElement(elementNumber);
                 mPrevElement.setEnabled(false);
                 mNextElement.setEnabled(true);
@@ -124,12 +150,7 @@ public class Grade1ExamActivity extends AppCompatActivity {
 
     private void updateElement(int elementNumber) {
 
-        // Remove any previously stored element data
-        if (!currentElement.isEmpty()) {
-            currentElement.clear();
-        }
-
-        // Populate currentElement with the correct data
+        // Populate ViewModel with the correct data
         switch (elementNumber) {
             case 1:
                 makeGrade1MajorScale();
@@ -149,148 +170,182 @@ public class Grade1ExamActivity extends AppCompatActivity {
         }
 
         // Update TextViews
-        mCurrentElementName.setText(currentElement.get(0));
-        mCurrentElementKey.setText(currentElement.get(1));
-        mCurrentElementHands.setText(currentElement.get(2));
-        mCurrentElementTempo.setText(currentElement.get(3));
+        mCurrentElementName.setText(currentElementViewModel.getElementName());
+        mCurrentElementKey.setText(currentElementViewModel.getElementKey());
+        mCurrentElementHands.setText(currentElementViewModel.getElementHands());
+        mCurrentElementTempo.setText(currentElementViewModel.getElementTempo());
+
+        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),elementNumber,totalElements));
 
     }
 
     private void makeGrade1MajorScale() {
 
         // add element name
-        currentElement.add(getString(R.string.EMG1_element_major_scale));
+        String elementName = getString(R.string.EMG1_element_major_scale);
+        currentElementViewModel.putElementName(elementName);
+
+        String elementKey;
+        String elementHands;
+        String elementTempo;
 
         // choose element key
         switch (randIntGen.nextInt(4))  {
             case 0:
-                currentElement.add(getString(R.string.EMG1_c_major));
+                elementKey = getString(R.string.EMG1_c_major);
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_g_major));
+                elementKey = getString(R.string.EMG1_g_major);
                 break;
             case 2:
-                currentElement.add(getString(R.string.EMG1_d_major));
+                elementKey = getString(R.string.EMG1_d_major);
                 break;
             case 3:
-                currentElement.add(getString(R.string.EMG1_f_major));
+                elementKey = getString(R.string.EMG1_f_major);
+                break;
+            default:
+                elementKey = getString(R.string.EMG1_element_key_default);
                 break;
         }
+
+        currentElementViewModel.currentElementKey = elementKey;
 
         // choose element hands
         switch (randIntGen.nextInt(2)) {
             case 0:
-                currentElement.add(getString(R.string.EMG1_right_hand));
+                elementHands = getString(R.string.EMG1_right_hand);
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_left_hand));
+                elementHands = getString(R.string.EMG1_left_hand);
+                break;
+            default:
+                elementHands = getString(R.string.EMG1_element_hands_default);
                 break;
         }
 
+        currentElementViewModel.currentElementHands = elementHands;
+
         // add element tempo
-        currentElement.add(getString(R.string.EMG1_scale_tempo));
+        elementTempo = getString(R.string.EMG1_scale_tempo);
+        currentElementViewModel.currentElementTempo = elementTempo;
 
     }
 
     private void makeGrade1MinorScale() {
 
         // add element name
-        currentElement.add(getString(R.string.EMG1_element_minor_scale));
+        String elementName = getString(R.string.EMG1_element_minor_scale);
+        currentElementViewModel.putElementName(elementName);
+
+        String elementKey;
+        String elementHands;
+        String elementTempo;
 
         // choose element key
         switch (randIntGen.nextInt(2))  {
             case 0:
-                currentElement.add(getString(R.string.EMG1_a_minor));
+                elementKey = getString(R.string.EMG1_a_minor);
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_d_minor));
+                elementKey = getString(R.string.EMG1_d_minor);
+                break;
+            default:
+                elementKey = getString(R.string.EMG1_element_key_default);
                 break;
         }
+
+        currentElementViewModel.currentElementKey = elementKey;
 
         // choose element hands
         switch (randIntGen.nextInt(2)) {
             case 0:
-                currentElement.add(getString(R.string.EMG1_right_hand));
+                elementHands = getString(R.string.EMG1_right_hand);
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_left_hand));
+                elementHands = getString(R.string.EMG1_left_hand);
+                break;
+            default:
+                elementHands = getString(R.string.EMG1_element_hands_default);
                 break;
         }
 
+        currentElementViewModel.currentElementHands = elementHands;
+
         // add element tempo
-        currentElement.add(getString(R.string.EMG1_scale_tempo));
+        elementTempo = getString(R.string.EMG1_scale_tempo);
+        currentElementViewModel.currentElementTempo = elementTempo;
 
     }
 
     private void makeGrade1ContMotionScale() {
 
-        currentElement.add(getString(R.string.EMG1_element_cont_motion_scale));
-        currentElement.add(getString(R.string.EMG1_starting_on_C));
-        currentElement.add(getString(R.string.EMG1_both_hands));
-        currentElement.add(getString(R.string.EMG1_scale_tempo));
+        currentElementViewModel.putElementName(getString(R.string.EMG1_element_cont_motion_scale));
+        currentElementViewModel.putElementKey(getString(R.string.EMG1_starting_on_C));
+        currentElementViewModel.putElementHands(getString(R.string.EMG1_both_hands));
+        currentElementViewModel.putElementTempo(getString(R.string.EMG1_scale_tempo));
 
     }
 
     private void makeGrade1MajorBrokenChord() {
 
         // add element name
-        currentElement.add(getString(R.string.EMG1_element_major_bc));
+        currentElementViewModel.putElementName(getString(R.string.EMG1_element_major_bc));
 
         // choose element key
         switch (randIntGen.nextInt(3))  {
             case 0:
-                currentElement.add(getString(R.string.EMG1_c_major));
+                currentElementViewModel.putElementKey(getString(R.string.EMG1_c_major));
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_g_major));
+                currentElementViewModel.putElementKey(getString(R.string.EMG1_g_major));
                 break;
             case 2:
-                currentElement.add(getString(R.string.EMG1_f_major));
+                currentElementViewModel.putElementKey(getString(R.string.EMG1_f_major));
                 break;
         }
 
         // choose element hands
         switch (randIntGen.nextInt(2)) {
             case 0:
-                currentElement.add(getString(R.string.EMG1_right_hand));
+                currentElementViewModel.putElementHands(getString(R.string.EMG1_right_hand));
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_left_hand));
+                currentElementViewModel.putElementHands(getString(R.string.EMG1_left_hand));
                 break;
         }
 
         // add element tempo
-        currentElement.add(getString(R.string.EMG1_bc_tempo));
+        currentElementViewModel.putElementTempo(getString(R.string.EMG1_bc_tempo));
 
     }
 
     private void makeGrade1MinorBrokenChord() {
 
         // add element name
-        currentElement.add(getString(R.string.EMG1_element_minor_bc));
+        currentElementViewModel.putElementName(getString(R.string.EMG1_element_minor_bc));
 
         // choose element key
         switch (randIntGen.nextInt(3))  {
             case 0:
-                currentElement.add(getString(R.string.EMG1_a_minor));
+                currentElementViewModel.putElementKey(getString(R.string.EMG1_a_minor));
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_d_minor));
+                currentElementViewModel.putElementKey(getString(R.string.EMG1_d_minor));
                 break;
         }
 
         // choose element hands
         switch (randIntGen.nextInt(2)) {
             case 0:
-                currentElement.add(getString(R.string.EMG1_right_hand));
+                currentElementViewModel.putElementHands(getString(R.string.EMG1_right_hand));
                 break;
             case 1:
-                currentElement.add(getString(R.string.EMG1_left_hand));
+                currentElementViewModel.putElementHands(getString(R.string.EMG1_left_hand));
                 break;
         }
 
         // add element tempo
-        currentElement.add(getString(R.string.EMG1_bc_tempo));
+        currentElementViewModel.putElementTempo(getString(R.string.EMG1_bc_tempo));
 
     }
 

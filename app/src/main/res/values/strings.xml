@@ -27,6 +27,9 @@
     <string name="EMG1_element_key_default">Element Key</string>
     <string name="EMG1_element_hands_default">Element Hands</string>
     <string name="EMG1_element_tempo_default">Element Tempo</string>
+    <string name="EMG1_element_number_default">Element x of y</string>
+
+    <string name="EMG1_element_number">Element %d of %d</string>
 
     <string name="EMG1_c_major">C Major</string>
     <string name="EMG1_g_major">G Major</string>
