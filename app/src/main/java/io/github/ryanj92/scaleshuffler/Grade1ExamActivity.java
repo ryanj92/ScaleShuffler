@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Grade1ExamActivity extends AppCompatActivity {
 
-    private int elementNumber;
     private final int totalElements = 5;
     private final int elementNumberDefault = 1;
 
@@ -41,7 +40,7 @@ public class Grade1ExamActivity extends AppCompatActivity {
         mNextElement = findViewById(R.id.bt_EMG1_next_element);
         mPrevElement = findViewById(R.id.bt_EMG1_prev_element);
         mResetExam = findViewById(R.id.bt_EMG1_reset_exam);
-        mGradeSelect = findViewById(R.id.bt_EMG1_grade_select);
+        mGradeSelect = findViewById(R.id.bt_EMG1_back);
 
         // Find current element text views
         mCurrentElementName = findViewById(R.id.tv_EMG1_current_element_name);
@@ -70,20 +69,18 @@ public class Grade1ExamActivity extends AppCompatActivity {
             mCurrentElementTempo.setText(currentElementViewModel.getElementTempo());
         }
 
-        elementNumber = currentElementViewModel.getElementNumber();
-
-        if (elementNumber == 0) {
-            elementNumber = elementNumberDefault;
-            currentElementViewModel.putElementNumber(elementNumber);
+        if (currentElementViewModel.getElementNumber() == 0) {
+            currentElementViewModel.putElementNumber(elementNumberDefault);
         }
 
-        if (elementNumber == 1) {
+        if (currentElementViewModel.getElementNumber() == 1) {
             mPrevElement.setEnabled(false);
-        } else if (elementNumber == totalElements) {
+        } else if (currentElementViewModel.getElementNumber() == totalElements) {
             mNextElement.setEnabled(false);
         }
 
-        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),elementNumber,totalElements));
+        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),
+                currentElementViewModel.getElementNumber(),totalElements));
 
         // Set onClickListeners for all navigation buttons -----------------------------------------
 
@@ -98,16 +95,15 @@ public class Grade1ExamActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Move to next element in list, update element
-                if (elementNumber < totalElements) {
-                    elementNumber++;
-                    currentElementViewModel.putElementNumber(elementNumber);
-                    updateElement(elementNumber);
+                if (currentElementViewModel.getElementNumber() < totalElements) {
+                    currentElementViewModel.putElementNumber(currentElementViewModel.getElementNumber() + 1);
+                    updateElement(currentElementViewModel.getElementNumber());
                 }
 
                 // disable and re-enable buttons
-                if (elementNumber == 2) {
+                if (currentElementViewModel.getElementNumber() == 2) {
                     mPrevElement.setEnabled(true);
-                } else if (elementNumber == totalElements) {
+                } else if (currentElementViewModel.getElementNumber() == totalElements) {
                     mNextElement.setEnabled(false);
                 }
 
@@ -118,16 +114,15 @@ public class Grade1ExamActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Move to previous element in list, update element
-                if (elementNumber > 1) {
-                    elementNumber--;
-                    currentElementViewModel.putElementNumber(elementNumber);
-                    updateElement(elementNumber);
+                if (currentElementViewModel.getElementNumber() > 1) {
+                    currentElementViewModel.putElementNumber(currentElementViewModel.getElementNumber() - 1);
+                    updateElement(currentElementViewModel.getElementNumber());
                 }
 
                 // disable and re-enable buttons
-                if (elementNumber == 1) {
+                if (currentElementViewModel.getElementNumber() == 1) {
                     mPrevElement.setEnabled(false);
-                } else if (elementNumber < totalElements) {
+                } else if (currentElementViewModel.getElementNumber() < totalElements) {
                     mNextElement.setEnabled(true);
                 }
             }
@@ -137,9 +132,8 @@ public class Grade1ExamActivity extends AppCompatActivity {
 
             // Return to first element, update element and buttons
             public void onClick(View v) {
-                elementNumber = elementNumberDefault;
-                currentElementViewModel.putElementNumber(elementNumber);
-                updateElement(elementNumber);
+                currentElementViewModel.putElementNumber(elementNumberDefault);
+                updateElement(currentElementViewModel.getElementNumber());
                 mPrevElement.setEnabled(false);
                 mNextElement.setEnabled(true);
             }
@@ -175,7 +169,8 @@ public class Grade1ExamActivity extends AppCompatActivity {
         mCurrentElementHands.setText(currentElementViewModel.getElementHands());
         mCurrentElementTempo.setText(currentElementViewModel.getElementTempo());
 
-        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),elementNumber,totalElements));
+        mCurrentElementNumber.setText(String.format(getString(R.string.EMG1_element_number),
+                currentElementViewModel.getElementNumber(),totalElements));
 
     }
 

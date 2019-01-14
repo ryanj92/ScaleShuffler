@@ -7,36 +7,32 @@
     tools:context=".Grade1ExamActivity">
 
     <Button
-        android:id="@+id/bt_EMG1_grade_select"
+        android:id="@+id/bt_EMG1_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/EMG1_grade_select_button_text"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/EMG1_back_button_text"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EMG1_reset_exam"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_EMG1_prev_element"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/bt_EMG1_reset_exam" />
 
     <Button
         android:id="@+id/bt_EMG1_prev_element"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/EMG1_prev_element_button_text"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_EMG1_grade_select"
-        app:layout_constraintEnd_toStartOf="@+id/bt_EMG1_reset_exam"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EMG1_reset_exam"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EMG1_next_element"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_number"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -44,107 +40,145 @@
         android:id="@+id/bt_EMG1_reset_exam"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/EMG1_reset_exam_button_text"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_EMG1_prev_element"
-        app:layout_constraintEnd_toStartOf="@+id/bt_EMG1_next_element"
-        app:layout_constraintStart_toEndOf="@+id/bt_EMG1_prev_element" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bt_EMG1_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_EMG1_prev_element" />
 
     <Button
         android:id="@+id/bt_EMG1_next_element"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/EMG1_next_element_button_text"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_EMG1_reset_exam"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_EMG1_prev_element"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bt_EMG1_reset_exam" />
+        app:layout_constraintStart_toEndOf="@+id/bt_EMG1_prev_element" />
 
-    <TextView
-        android:id="@+id/tv_EMG1_page_title"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_title_text"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_EMG1_current_element_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_element_name_default"
-        android:textAlignment="center"
-        android:textSize="30sp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintBottom_toTopOf="@+id/bt_EMG1_prev_element"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_page_title" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_EMG1_current_element_key"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_element_key_default"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_name" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/scrollView2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_number">
 
-    <TextView
-        android:id="@+id/tv_EMG1_current_element_hands"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_element_hands_default"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_key" />
+            <TextView
+                android:id="@+id/tv_EMG1_current_element_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/EMG1_element_name_default"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_EMG1_current_element_key"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_page_title" />
 
-    <TextView
-        android:id="@+id/tv_EMG1_current_element_tempo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_element_tempo_default"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_hands" />
+            <TextView
+                android:id="@+id/tv_EMG1_current_element_tempo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/EMG1_element_tempo_default"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_EMG1_current_element_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_hands" />
 
-    <TextView
-        android:id="@+id/tv_EMG1_current_element_number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/EMG1_element_number_default"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_tempo" />
+            <TextView
+                android:id="@+id/tv_EMG1_current_element_hands"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/EMG1_element_hands_default"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_EMG1_current_element_tempo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_key" />
+
+            <TextView
+                android:id="@+id/tv_EMG1_current_element_key"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/EMG1_element_key_default"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_EMG1_current_element_hands"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_name" />
+
+            <TextView
+                android:id="@+id/tv_EMG1_current_element_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/EMG1_element_number_default"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_EMG1_current_element_tempo" />
+
+            <TextView
+                android:id="@+id/tv_EMG1_page_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/EMG1_title_text"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_EMG1_current_element_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

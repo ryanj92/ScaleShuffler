@@ -19,7 +19,7 @@
 
     <!-- Strings for Grade 1 Exam -->
     <string name="EMG1_title_text">Grade 1 Exam</string>
-    <string name="EMG1_grade_select_button_text">Grade Select</string>
+    <string name="EMG1_back_button_text">Back</string>
     <string name="EMG1_next_element_button_text">Next</string>
     <string name="EMG1_prev_element_button_text">Previous</string>
     <string name="EMG1_reset_exam_button_text">Reset</string>
@@ -29,7 +29,7 @@
     <string name="EMG1_element_tempo_default">Element Tempo</string>
     <string name="EMG1_element_number_default">Element x of y</string>
 
-    <string name="EMG1_element_number">Element %d of %d</string>
+    <string name="EMG1_element_number">%d of %d</string>
 
     <string name="EMG1_c_major">C Major</string>
     <string name="EMG1_g_major">G Major</string>
